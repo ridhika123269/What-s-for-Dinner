@@ -1,10 +1,17 @@
 import { useNavigate } from "react-router-dom";
+import LogoutButton from "../components/LogoutButton";
 
 export default function Home() {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center px-4 py-8 space-y-8">
+      {/* Top bar with logout on the right */}
+      <div className="w-full flex justify-end p-4">
+        <LogoutButton />
+      </div>
+
+      {/* Big title */}
       <h1 className="text-4xl font-bold text-center">What’s for dinner?</h1>
       <div className="h-1 w-24 bg-gray-400"></div>
 
@@ -16,27 +23,21 @@ export default function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-6xl">
         <button
-          onClick={() =>
-            navigate("/enter-ingredients")
-          }
+          onClick={() => navigate("/enter-ingredients")}
           className="bg-neutral-900 hover:bg-neutral-800 h-60 flex items-center justify-center text-lg font-semibold"
         >
           Choose groceries manually
         </button>
 
         <button
-          onClick={() =>
-            navigate("/upload-image")
-          }
+          onClick={() => navigate("/upload-image")}
           className="bg-neutral-900 hover:bg-neutral-800 h-60 flex items-center justify-center text-lg font-semibold"
         >
           Show me your fridge
         </button>
 
         <button
-          onClick={() =>
-            navigate("/spin-wheel")
-          }
+          onClick={() => navigate("/spin-wheel")}
           className="bg-neutral-900 hover:bg-neutral-800 h-60 flex items-center justify-center text-lg font-semibold"
         >
           Spin a wheel

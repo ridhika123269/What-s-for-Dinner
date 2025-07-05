@@ -6,31 +6,33 @@ import Results from "./pages/Results";
 import FridgeResults from "./pages/FridgeResults";
 import Generating from "./pages/Generating";
 import SpinWheel from "./pages/SpinWheel";
+import Login from "./pages/Login";
+import ProtectedRoute from "./ProtectedRoute";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Home Page */}
-        <Route path="/" element={<Home />} />
+        {/* Login is public */}
+        <Route path="/login" element={<Login />} />
 
-        {/* Enter Ingredients */}
-        <Route path="/enter-ingredients" element={<EnterIngredients />} />
-
-        {/* Upload Image */}
-        <Route path="/upload-image" element={<UploadImage />} />
-
-        {/* Generating */}
-        <Route path="/generating" element={<Generating />} />
-
-        {/* Results */}
-        <Route path="/results" element={<Results />} />
-
-        {/* Fridge Results */}
-        <Route path="/fridge-results" element={<FridgeResults />} />
-
-        {/* Spin Wheel */}
-        <Route path="/spin-wheel" element={<SpinWheel />} />
+        {/* All other routes are protected */}
+        <Route
+          path="/*"
+          element={
+            <ProtectedRoute>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/enter-ingredients" element={<EnterIngredients />} />
+                <Route path="/upload-image" element={<UploadImage />} />
+                <Route path="/generating" element={<Generating />} />
+                <Route path="/results" element={<Results />} />
+                <Route path="/fridge-results" element={<FridgeResults />} />
+                <Route path="/spin-wheel" element={<SpinWheel />} />
+              </Routes>
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
